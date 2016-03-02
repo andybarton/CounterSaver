@@ -36,5 +36,6 @@
         android:text="Save Count"
         android:id="@+id/countSaver"
         android:layout_alignTop="@+id/incrementer"
-        android:layout_toEndOf="@+id/numbaDisplaya" />
+        android:layout_toEndOf="@+id/numbaDisplaya"
+        android:onClick="onSave" />
 </RelativeLayout>

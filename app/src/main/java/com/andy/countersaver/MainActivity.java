@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    protected void onSave(){
+    public void onSave(View view){
         super.onStop();
 
 // We need an Editor object to make preference changes.
@@ -71,14 +71,15 @@ public class MainActivity extends AppCompatActivity {
     }
     void setNumber(int a) {
         theNumberrr = a;
+        textBoxUpdater();
     }
 
-    void incNum(View view) {
+    public void incNum(View view) {
         theNumberrr++;
-        textBoxUpdater(view);
+        textBoxUpdater();
     }
 
-    void textBoxUpdater(View view) {
+    void textBoxUpdater() {
         TextView tv = (TextView) findViewById(R.id.numbaDisplaya);
         tv.setText(theNumberrr.toString());
     }
