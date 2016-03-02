@@ -1,0 +1,86 @@
+package com.andy.countersaver;
+
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+
+    private Integer theNumberrr;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+
+        // Restore preferences
+        SharedPreferences settings = getSharedPreferences("prefsFile", 0);
+        int name_of_int = settings.getInt("the_setting", 0);
+        setNumber(name_of_int);
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    protected void onSave(){
+        super.onStop();
+
+// We need an Editor object to make preference changes.
+// All objects are from android.context.Context
+        SharedPreferences settings = getSharedPreferences("prefsFile", 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putInt("the_setting", theNumberrr);
+
+    }
+    void setNumber(int a) {
+        theNumberrr = a;
+    }
+
+    void incNum(View view) {
+        theNumberrr++;
+        textBoxUpdater(view);
+    }
+
+    void textBoxUpdater(View view) {
+        TextView tv = (TextView) findViewById(R.id.numbaDisplaya);
+        tv.setText(theNumberrr.toString());
+    }
+
+}
