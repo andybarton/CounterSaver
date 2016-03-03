@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences settings = getSharedPreferences("prefsFile", 0);
         SharedPreferences.Editor editor = settings.edit();
         editor.putInt("the_setting", theNumberrr);
+        editor.apply();
 
     }
     void setNumber(int a) {
